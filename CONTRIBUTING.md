@@ -1,6 +1,6 @@
-# Contributing to react-native-electron
+# Contributing to react-native-electron-platform
 
-Thank you for your interest in contributing to react-native-electron! We welcome contributions from the community.
+Thank you for your interest in contributing to react-native-electron-platform! We welcome contributions from the community.
 
 ## How to Contribute
 

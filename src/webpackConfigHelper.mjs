@@ -2,7 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs';
-import { WEB_UNSUPPORTED_PACKAGES } from '../../../electron/nonmodules.mjs';
+import { WEB_UNSUPPORTED_PACKAGES } from '../test/electron/nonmodules.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

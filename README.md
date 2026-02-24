@@ -1,8 +1,7 @@
-# react-native-electron
+# react-native-electron-platform
 
-[![npm version](https://badge.fury.io/js/react-native-electron.svg)](https://badge.fury.io/js/react-native-electron)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/dpraful/react-native-electron/workflows/CI/badge.svg)](https://github.com/dpraful/react-native-electron/actions)
+[![npm version](https://badge.fury.io/js/react-native-electron-platform.svg)](https://badge.fury.io/js/react-native-electron-platform)
+[![CI](https://github.com/dpraful/react-native-electron-platform/workflows/CI/badge.svg)](https://github.com/dpraful/react-native-electron-platform/actions)
 
 A boilerplate and utility library for running React Native applications in Electron, supporting both desktop and web platforms.
 
@@ -19,7 +18,7 @@ A boilerplate and utility library for running React Native applications in Elect
 ## Installation
 
 ```bash
-npm install react-native-electron
+npm install react-native-electron-platform
 ```
 
 ## Usage
@@ -32,7 +31,7 @@ npm install react-native-electron
 ### As a Library
 
 ```javascript
-import { categorizePackages, isWebSupported } from 'react-native-electron';
+import { categorizePackages, isWebSupported } from 'react-native-electron-platform';
 
 const packages = categorizePackages();
 // Use the categorized packages for your build configuration
@@ -74,4 +73,4 @@ See [CHANGELOG.md](CHANGELOG.md) for a list of changes and version history.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is proprietary software owned by JESCON TECHNOLOGIES PVT LTD. All rights reserved. Unauthorized use, copying, modification, or distribution is prohibited.

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron src/main.mjs",
     "build": "webpack --config webpack.config.mjs",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "node test/test.mjs"
   },
   "keywords": [
     "react-native",
@@ -15,8 +15,8 @@
     "web",
     "boilerplate"
   ],
-  "author": "JESCON TECHNOLOGIES PVT LTD",
-  "license": "MIT",
+  "author": "PRAFULDAS M M",
+  "license": "JESCON TECHNOLOGIES PVT LTD",
   "repository": {
     "type": "git",
     "url": "https://github.com/dpraful/react-native-electron-platform.git"
