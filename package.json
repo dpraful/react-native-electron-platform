@@ -1,9 +1,48 @@
 {
-  "name": "electron",
-  "version": "0.0.1",
-  "main": "src/main.mjs",
+  "name": "react-native-electron",
+  "version": "1.0.0",
+  "description": "A boilerplate and utilities for running React Native applications in Electron",
+  "main": "index.mjs",
   "scripts": {
-    "start": "electron ."
+    "start": "electron src/main.mjs",
+    "build": "webpack --config webpack.config.mjs",
+    "test": "echo \"No tests specified\" && exit 0"
   },
-  "dependencies": {}
+  "keywords": [
+    "react-native",
+    "electron",
+    "desktop",
+    "web",
+    "boilerplate"
+  ],
+  "author": "JESCON TECHNOLOGIES PVT LTD",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpraful/react-native-electron.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dpraful/react-native-electron/issues"
+  },
+  "homepage": "https://github.com/dpraful/react-native-electron#readme",
+  "dependencies": {
+    "electron": "^25.0.0",
+    "electron-updater": "^6.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "html-webpack-plugin": "^5.0.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.60.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ]
 }

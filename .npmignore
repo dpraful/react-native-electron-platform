@@ -1,0 +1,20 @@
+# Exclude everything by default
+*
+
+# Include only necessary files
+!src/
+!README.md
+!LICENSE
+!package.json
+
+# Exclude test files if not needed
+src/test/
+test/
+
+# Exclude build configs if not needed
+webpack.config.mjs
+electron-builder.json
+
+# Exclude development files
+.gitignore
+.npmignore
