@@ -1,0 +1,94 @@
+{
+  "appId": "com.${name}.desktop",
+  "productName": "${name}",
+  "name": "${name}",
+  "asar": {
+    "smartUnpack": true
+  },
+  "compression": "maximum",
+  "electronLanguages": ["en-US"],
+  "removePackageScripts": true,
+  "removePackageKeywords": true,
+  "buildDependenciesFromSource": false,
+  "npmRebuild": false,
+  "nodeGypRebuild": false,
+  "directories": {
+    "output": "../../dist",
+    "buildResources": "electron"
+  },
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "https://yourdomain.com/updates/"
+    }
+  ],
+  "files": [
+    "electron/**/*",
+    "web-build/**/*",
+    "package.json",
+    "!**/*.map",
+    "!**/*.md",
+    "!**/*.ts",
+    "!**/*.tsx",
+    "!**/*.log",
+    "!**/test/**",
+    "!**/__tests__/**",
+    "!**/tests/**",
+    "!**/docs/**",
+    "!**/example/**",
+    "!**/examples/**",
+    "!**/.vscode/**",
+    "!**/.github/**",
+    "!**/node_modules/.bin",
+    "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md}",
+    "!**/node_modules/*/{test,__tests__,tests,example,examples}",
+    "!**/node_modules/**/*.d.ts",
+    "!**/android/**",
+    "!**/ios/**",
+    "!**/build/**",
+    "!**/*.gradle",
+    "!**/*.java",
+    "!**/*.kt",
+    "!**/node_modules/**/android/**",
+    "!**/node_modules/**/ios/**",
+    "!**/node_modules/**/build/**",
+    "!**/node_modules/react-native/**",
+    "!**/node_modules/react-native-*/*",
+    "!**/node_modules/rn-fetch-blob/**",
+    "!**/locales/**"
+  ],
+  "asarUnpack": [
+    "**/*.node"
+  ],
+  "extraMetadata": {
+    "main": "electron/main.js"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "msi",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "electron/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "${name}",
+    "artifactName": "${productName} Setup ${version}.${ext}"
+  },
+  "msi": {
+    "oneClick": false,
+    "perMachine": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "warningsAsErrors": false
+  }
+}

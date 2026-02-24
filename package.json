@@ -1,0 +1,9 @@
+{
+  "name": "electron",
+  "version": "0.0.1",
+  "main": "src/main.mjs",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {}
+}
