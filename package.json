@@ -1,6 +1,6 @@
 {
-  "name": "react-native-electron",
-  "version": "1.0.0",
+  "name": "react-native-electron-platform",
+  "version": "0.0.4",
   "description": "A boilerplate and utilities for running React Native applications in Electron",
   "main": "index.mjs",
   "scripts": {
@@ -19,12 +19,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dpraful/react-native-electron.git"
+    "url": "https://github.com/dpraful/react-native-electron-platform.git"
   },
   "bugs": {
-    "url": "https://github.com/dpraful/react-native-electron/issues"
+    "url": "https://github.com/dpraful/react-native-electron-platform/issues"
   },
-  "homepage": "https://github.com/dpraful/react-native-electron#readme",
+  "homepage": "https://github.com/dpraful/react-native-electron-platform#readme",
   "dependencies": {
     "electron": "^25.0.0",
     "electron-updater": "^6.0.0"
@@ -41,8 +41,15 @@
     "node": ">=14.0.0"
   },
   "files": [
+    "index.mjs",
+    "webpack.config.mjs",
     "src/",
+    "test/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "electron-builder.json"
   ]
 }

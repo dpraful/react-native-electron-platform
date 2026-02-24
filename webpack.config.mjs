@@ -67,7 +67,7 @@ export default {
       // Your source files
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules\/(?!react-native-electron)/,
+        exclude: /node_modules\/(?!react-native-electron-platform)/,
         use: {
           loader: 'babel-loader',
           options: {
