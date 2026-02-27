@@ -1,12 +1,11 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.0.4",
+  "version": "0.0.12",
   "description": "A boilerplate and utilities for running React Native applications in Electron",
   "main": "index.mjs",
   "scripts": {
-    "start": "electron src/main.mjs",
-    "build": "webpack --config webpack.config.mjs",
-    "test": "node test/test.mjs"
+    "start": "electron index.mjs",
+    "build": "webpack --config webpack.config.mjs"
   },
   "keywords": [
     "react-native",

@@ -12,8 +12,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 class CopyFontsPlugin {
   apply(compiler) {
     compiler.hooks.afterEmit.tap('CopyFontsPlugin', () => {
-      const sourceDir = path.join(__dirname, '../../node_modules/react-native-vector-icons/Fonts');
-      const destDir = path.join(__dirname, '../../web-build/fonts');
+      const sourceDir = path.join(__dirname, '../react-native-vector-icons/Fonts');
+      const destDir = path.join(process.cwd(), 'web-build/fonts');
 
       if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
@@ -31,7 +31,7 @@ class CopyFontsPlugin {
 
 export default {
   mode: 'development',
-  entry: path.resolve(__dirname, '../../electron/index.js'),
+  entry: path.resolve(process.cwd(), 'electron/index.js'),
   devtool: 'source-map',
 
   devServer: {
@@ -42,7 +42,7 @@ export default {
     historyApiFallback: true,
     liveReload: true,
     static: {
-      directory: path.join(__dirname, '../../web-build'),
+      directory: path.join(process.cwd(), 'web-build'),
       publicPath: '/',
     },
     client: {
@@ -133,7 +133,7 @@ export default {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../../web-build'),
+    path: path.resolve(process.cwd(), 'web-build'),
     clean: true,
     libraryTarget: 'umd', // UMD fixes 'exports is not defined'
     globalObject: 'this',
