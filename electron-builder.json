@@ -11,38 +11,55 @@
   "buildDependenciesFromSource": false,
   "npmRebuild": false,
   "nodeGypRebuild": false,
+
   "directories": {
     "output": "dist",
     "buildResources": "node_modules/react-native-electron-platform/src"
   },
+
   "publish": [
     {
       "provider": "generic",
       "url": "https://yourdomain.com/updates/"
     }
   ],
+
   "files": [
     "electron/**/*",
     "web-build/**/*",
     "package.json",
+
+    "node_modules/react-native-electron-platform/src/**/*",
+    "node_modules/react-native-electron-platform/index.mjs",
+
     "!**/*.map",
     "!**/*.md",
     "!**/test/**",
     "!**/__tests__/**",
     "!**/docs/**",
     "!**/locales/**",
-    "!**/node_modules/react-native/**",
+    "!**/example/**",
+
+    "!**/android/**",
+    "!**/ios/**",
+    "!**/build/**",
+    
     "!**/node_modules/electron/**",
-    "!**/node_modules/react-native-*/*",
-    "node_modules/react-native-electron-platform/src/**/*",
-    "node_modules/react-native-electron-platform/index.mjs"
+    "!**/node_modules/react-native/**",
+    "!node_modules/**/android/**",
+    "!node_modules/**/ios/**",
+    "!node_modules/**/build/**",
+    "!node_modules/**/example/**"
   ],
+
   "asarUnpack": [
     "**/*.node"
   ],
+
   "extraMetadata": {
     "main": "node_modules/react-native-electron-platform/index.mjs"
   },
+
   "win": {
     "target": [
       {
@@ -56,14 +73,16 @@
     ],
     "icon": "electron/icon.ico"
   },
+
   "nsis": {
     "oneClick": false,
     "allowToChangeInstallationDirectory": true,
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "ris",
+    "shortcutName": "app",
     "artifactName": "${productName} Setup ${version}.${ext}"
   },
+
   "msi": {
     "oneClick": false,
     "perMachine": true,
