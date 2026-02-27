@@ -1,6 +1,6 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A boilerplate and utilities for running React Native applications in Electron",
   "main": "index.mjs",
   "scripts": {
@@ -49,6 +49,9 @@
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
-    "electron-builder.json"
+    "electron-builder.json",
+    ".editorconfig",
+    ".gitattributes",
+    ".npmignore"
   ]
 }
