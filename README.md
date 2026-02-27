@@ -113,7 +113,7 @@ Read the **[Complete Setup Guide](SETUP.md)** for step-by-step instructions on:
 
 ## 📖 How to Use
 
-### Option 1: As an NPM Module (Recommended) ⭐
+### As an NPM Module (Recommended) ⭐
 
 The easiest and recommended way - install as a package and use pre-configured setup:
 
@@ -201,75 +201,10 @@ if (root) {
 }
 ```
 
-Create `index.html`:
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My App</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; }
-      #root { width: 100%; height: 100vh; }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
-```
-
 **Run Your App:**
 ```bash
 npm run electron
 ```
-
-### Option 2: As a Boilerplate (Advanced)
-
-For custom use cases, copy specific files to your Electron project:
-
-```bash
-# Copy Electron entry point
-cp node_modules/react-native-electron-platform/index.mjs ./
-
-# Copy webpack config helper
-cp node_modules/react-native-electron-platform/src/webpackConfigHelper.mjs ./src/
-
-# Copy preload script (for security)
-cp node_modules/react-native-electron-platform/src/preload.mjs ./src/
-```
-
-### Option 3: As a Library (Advanced)
-
-Use utility functions directly in your project:
-
-```javascript
-// Analyze dependencies
-import webpackConfigHelper from 'react-native-electron-platform/src/webpackConfigHelper.mjs';
-const packages = webpackConfigHelper.categorizePackages();
-
-// Use modules
-import { windowManager, networkService, autoUpdater } from 'react-native-electron-platform/src/modules/';
-
-// Create window
-windowManager.createWindow({ width: 1024, height: 768 });
-
-// Make secure network requests
-networkService.fetch('https://api.example.com/data');
-
-// Check for updates
-autoUpdater.checkForUpdates();
-```
-
-## Example Project
-
-See the [example-project](example-project/) folder for a complete, working example with:
-- Pre-configured `package.json`
-- Sample App component
-- Electron configuration
-- HTML entry point
 
 ## 🔧 Available NPM Scripts
 
