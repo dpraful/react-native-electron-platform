@@ -1,6 +1,6 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A boilerplate and utilities for running React Native applications in Electron",
   "main": "index.mjs",
   "scripts": {
