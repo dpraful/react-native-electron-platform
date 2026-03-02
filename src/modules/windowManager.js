@@ -23,7 +23,7 @@ export function createMainWindow(__dirname) {
       nodeIntegration: false,
       contextIsolation: true,
       sandbox: false,
-      webSecurity: false,
+      webSecurity: true,
       disableBlinkFeatures: "AutoLoadIconsForPage",
       nativeWindowOpen: true,
       spellcheck: true,
@@ -48,7 +48,7 @@ export function createMainWindow(__dirname) {
   loadAppContent(mainWindow, __dirname);
 
   // Setup dev tools shortcuts in development
-  if (isDevMode()) {
+  if (process.env.PORT) {
     setupDevToolsShortcuts(mainWindow);
   }
 
@@ -81,17 +81,12 @@ function setupCorsHandling() {
   });
 }
 
-function isDevMode() {
-  return process.argv.includes("--enable-remote-module") ||
-    process.env.NODE_ENV === "development";
-}
 
 function loadAppContent(mainWindow, __dirname) {
-  const isDev = isDevMode();
-
-  if (isDev) {
-    mainWindow.loadURL("http://localhost:5001");
-    console.log("DEV MODE: http://localhost:5001");
+  if (process.env.PORT) {
+    const APIURL = `http://localhost:${process.env.PORT}`
+    mainWindow.loadURL(APIURL);
+    console.log("DEV MODE:", APIURL);
   } else {
     const possiblePaths = [
       path.join(__dirname, "web-build/index.html"),
