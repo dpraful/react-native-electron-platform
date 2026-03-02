@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import fs from 'fs';
 import packageJson from '../../package.json' with { type: 'json' };
 import { generateAlias, generateFallback } from './src/webpackConfigHelper.mjs';
@@ -17,6 +18,12 @@ class CopyFontsPlugin {
 
       if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
+      }
+
+      // Add fallback check for missing source directory
+      if (!fs.existsSync(sourceDir)) {
+        console.warn(`[CopyFontsPlugin] Warning: Fonts directory not found at ${sourceDir}. Skipping font copy.`);
+        return;
       }
 
       const files = fs.readdirSync(sourceDir);
@@ -71,17 +78,7 @@ export default {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
-            plugins: [
-              ['@babel/plugin-transform-class-properties', { loose: true }],
-              ['@babel/plugin-transform-private-methods', { loose: true }],
-              ['@babel/plugin-transform-private-property-in-object', { loose: true }],
-              '@babel/plugin-transform-runtime',
-            ],
+            plugins: ['react-refresh/babel'],
           },
         },
       },
@@ -93,16 +90,7 @@ export default {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
-            plugins: [
-              ['@babel/plugin-transform-class-properties', { loose: true }],
-              ['@babel/plugin-transform-private-methods', { loose: true }],
-              ['@babel/plugin-transform-private-property-in-object', { loose: true }],
-            ],
+            plugins: ['react-refresh/babel'],
           },
         },
       },
@@ -141,6 +129,7 @@ export default {
   },
 
   plugins: [
+    new ReactRefreshWebpackPlugin(),
     new CopyFontsPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),

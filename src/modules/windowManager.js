@@ -8,7 +8,7 @@ export function createMainWindow(__dirname) {
   const { x, y, width, height } = primaryDisplay.bounds;
 
   const iconPath = path.join(app.getAppPath(), "electron/icon.ico");
-  const preloadPath = path.join(__dirname, "preload.mjs");
+  const preloadPath = path.join(__dirname, "src", "preload.mjs");
 
   const mainWindow = new BrowserWindow({
     x,
