@@ -8,8 +8,11 @@ import packageJson from '../../package.json' with { type: 'json' };
 import { generateAlias, generateFallback } from './src/webpackConfigHelper.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const port = process.env.PORT || 'auto';
-// Plugin to copy vector icon fontsy
+const port = process.env.PORT || 5001;
+const host = process.env.HOST || 'localhost';
+export const ApiUrl = `http://${host}:${port}`;
+
+// Plugin to copy vector icon fonts
 class CopyFontsPlugin {
   apply(compiler) {
     compiler.hooks.afterEmit.tap('CopyFontsPlugin', () => {
@@ -43,7 +46,7 @@ export default {
 
   devServer: {
     port: port,
-    host: 'localhost',
+    host: host,
     hot: true,
     compress: true,
     historyApiFallback: true,

@@ -129,6 +129,7 @@ npm install react-native-electron-platform
   "scripts": {
     "web": "webpack serve --config node_modules/react-native-electron-platform/webpack.config.mjs --mode development",
     "web:build": "webpack --config node_modules/react-native-electron-platform/webpack.config.mjs --mode production",
+    "preelectron": "node node_modules/react-native-electron-platform/scripts/preelectron.mjs",
     "electron": "cross-env NODE_ENV=development concurrently \"npm run web\" \"wait-on http://localhost:5001 && electron .\"",
     "electron:dev": "cross-env NODE_ENV=development electron . --enable-remote-module",
     "electron:build": "npm run web:build && electron-builder --config node_modules/react-native-electron-platform/electron-builder.json",

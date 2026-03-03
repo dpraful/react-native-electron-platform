@@ -1,6 +1,6 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "description": "A boilerplate and utilities for running React Native applications in Electron",
   "main": "index.mjs",
   "scripts": {
@@ -51,8 +51,9 @@
   "files": [
     "index.mjs",
     "webpack.config.mjs",
+    "scripts/",
     "src/",
-    "test/",
+    "templates/",
     "README.md",
     "LICENSE",
     "CHANGELOG.md",

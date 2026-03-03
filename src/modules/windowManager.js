@@ -2,6 +2,7 @@ import { BrowserWindow, screen, session } from "electron";
 import path from "path";
 import fs from "fs";
 import { app, dialog } from "electron";
+import { ApiUrl } from "react-native-electron-platform/webpack.config.mjs";
 
 export function createMainWindow(__dirname) {
   const primaryDisplay = screen.getPrimaryDisplay();
@@ -48,7 +49,7 @@ export function createMainWindow(__dirname) {
   loadAppContent(mainWindow, __dirname);
 
   // Setup dev tools shortcuts in development
-  if (process.env.PORT) {
+  if (isDevMode()) {
     setupDevToolsShortcuts(mainWindow);
   }
 
@@ -81,12 +82,17 @@ function setupCorsHandling() {
   });
 }
 
+function isDevMode() {
+  return process.argv.includes("--enable-remote-module") ||
+    process.env.NODE_ENV === "development";
+}
 
 function loadAppContent(mainWindow, __dirname) {
-  if (process.env.PORT) {
-    const APIURL = `http://localhost:${process.env.PORT}`
-    mainWindow.loadURL(APIURL);
-    console.log("DEV MODE:", APIURL);
+  const isDev = isDevMode();
+
+  if (isDev) {
+    mainWindow.loadURL(ApiUrl);
+    console.log("DEV MODE:", ApiUrl);
   } else {
     const possiblePaths = [
       path.join(__dirname, "web-build/index.html"),
