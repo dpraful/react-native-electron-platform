@@ -2,7 +2,6 @@ import { BrowserWindow, screen, session } from "electron";
 import path from "path";
 import fs from "fs";
 import { app, dialog } from "electron";
-import { ApiUrl } from "react-native-electron-platform/webpack.config.mjs";
 
 export function createMainWindow(__dirname) {
   const primaryDisplay = screen.getPrimaryDisplay();
@@ -91,8 +90,8 @@ function loadAppContent(mainWindow, __dirname) {
   const isDev = isDevMode();
 
   if (isDev) {
-    mainWindow.loadURL(ApiUrl);
-    console.log("DEV MODE:", ApiUrl);
+    mainWindow.loadURL("http://localhost:5001");
+    console.log("DEV MODE: http://localhost:5001");
   } else {
     const possiblePaths = [
       path.join(__dirname, "web-build/index.html"),

@@ -1,4 +1,6 @@
 import { app, dialog } from "electron";
+import path from "path";
+import fs from "fs";
 import electronUpdater from "electron-updater";
 const { autoUpdater } = electronUpdater;
 
@@ -7,6 +9,14 @@ export function setupAutoUpdater(mainWindow) {
   
   if (!app.isPackaged) {
     console.log("Auto-update disabled in development.");
+    return;
+  }
+
+  // Check if app-update.yml exists (required for auto-updates)
+  const appUpdatePath = path.join(process.resourcesPath, "app-update.yml");
+  if (!fs.existsSync(appUpdatePath)) {
+    console.log("⚠️  Auto-update disabled: app-update.yml not found.");
+    console.log("   This file is only created when publishing updates.");
     return;
   }
   
@@ -57,6 +67,9 @@ export function setupAutoUpdater(mainWindow) {
         if (result.response === 0) {
           autoUpdater.quitAndInstall();
         }
+      })
+      .catch((err) => {
+        console.error("Error showing update dialog:", err);
       });
   });
 
@@ -67,6 +80,12 @@ export function setupAutoUpdater(mainWindow) {
 
   // Check for updates after a short delay
   setTimeout(() => {
-    autoUpdater.checkForUpdates();
+    try {
+      autoUpdater.checkForUpdates().catch((err) => {
+        console.error("Failed to check for updates:", err.message);
+      });
+    } catch (err) {
+      console.error("Auto-updater initialization error:", err);
+    }
   }, 3000);
 }

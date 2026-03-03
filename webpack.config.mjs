@@ -75,13 +75,24 @@ export default {
   module: {
     rules: [
       // Your source files
+      // Your source files
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules\/(?!react-native-electron-platform)/,
         use: {
           loader: 'babel-loader',
           options: {
-            plugins: ['react-refresh/babel'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              ['@babel/plugin-transform-class-properties', { loose: true }],
+              ['@babel/plugin-transform-private-methods', { loose: true }],
+              ['@babel/plugin-transform-private-property-in-object', { loose: true }],
+              '@babel/plugin-transform-runtime',
+            ],
           },
         },
       },
@@ -93,7 +104,16 @@ export default {
         use: {
           loader: 'babel-loader',
           options: {
-            plugins: ['react-refresh/babel'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              ['@babel/plugin-transform-class-properties', { loose: true }],
+              ['@babel/plugin-transform-private-methods', { loose: true }],
+              ['@babel/plugin-transform-private-property-in-object', { loose: true }],
+            ],
           },
         },
       },
