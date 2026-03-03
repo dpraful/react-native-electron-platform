@@ -46,6 +46,15 @@ contextBridge.exposeInMainWorld("electronAPI", {
    */
   openURL: (url) => ipcRenderer.invoke('react-native-open-url', url),
 
+   /**
+   * UNIVERSAL FILE DOWNLOAD
+   * Supports csv, pdf, excel, images, zip, etc.
+   * @param {string} url - File URL
+   * @param {string} filename - Suggested filename
+   */
+  downloadFile: (url, filename) =>
+    ipcRenderer.invoke("download-file", { url, filename }),
+
   // ======================================================
   // CLIPBOARD OPERATIONS
   // ======================================================

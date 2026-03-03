@@ -23,7 +23,7 @@ export function createMainWindow(__dirname) {
       nodeIntegration: false,
       contextIsolation: true,
       sandbox: false,
-      webSecurity: true,
+      webSecurity: false,
       disableBlinkFeatures: "AutoLoadIconsForPage",
       nativeWindowOpen: true,
       spellcheck: true,
