@@ -6,6 +6,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import fs from 'fs';
 import packageJson from '../../package.json' with { type: 'json' };
 import { generateAlias, generateFallback } from './src/webpackConfigHelper.mjs';
+import { createProgressPlugin } from './src/progress.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = process.env.PORT || 5001;
@@ -44,6 +45,10 @@ export default {
   entry: path.resolve(process.cwd(), 'electron/index.js'),
   devtool: 'source-map',
 
+  stats: 'none',
+  infrastructureLogging: {
+    level: 'error',
+  },
   devServer: {
     port: port,
     host: host,
@@ -55,12 +60,17 @@ export default {
       directory: path.join(process.cwd(), 'web-build'),
       publicPath: '/',
     },
+    devMiddleware: {
+      stats: 'errors-only',
+    },
     client: {
+      logging: 'none',
       overlay: {
         errors: true,
         warnings: false,
       },
-      reconnect: true,
+      reconnect: false,
+      progress: false,
     },
   },
 
@@ -152,7 +162,10 @@ export default {
   },
 
   plugins: [
-    new ReactRefreshWebpackPlugin(),
+    createProgressPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }),
     new CopyFontsPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),

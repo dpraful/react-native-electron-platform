@@ -75,8 +75,8 @@ npm install react-native-electron-platform
 You'll also need to install these peer dependencies:
 
 ```bash
-npm install react react-native cross-env concurrently wait-on electron electron-builder
-npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugin @babel/core @babel/preset-react babel-loader
+npm install react react-native cross-env concurrently wait-on electron electron-builder react-native-web
+npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugin @babel/core @babel/preset-react babel-loader @pmmmwh/react-refresh-webpack-plugin
 ```
 
 ## 🚀 Quick Start Guide

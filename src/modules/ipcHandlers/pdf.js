@@ -1,4 +1,4 @@
-import { ipcMain, dialog, BrowserWindow } from "electron";
+import { ipcMain, dialog, BrowserWindow, net } from "electron";
 import fs from "fs";
 import path from "path";
 import { Readable } from "stream";
@@ -45,29 +45,38 @@ export function registerPdfHandlers() {
       const { url, data, headers = {} } = payload;
       console.log("IPC post-pdf-preview:", { url });
       
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/pdf",
-          ...headers,
-        },
-        body: data,
-      });
-
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-
       const fileName = `Report_${Date.now()}.pdf`;
       const tempPath = path.join(app.getPath("temp"), fileName);
 
-      const nodeStream = Readable.fromWeb(res.body);
       await new Promise((resolve, reject) => {
-        const fileStream = fs.createWriteStream(tempPath);
-        nodeStream.pipe(fileStream);
-        nodeStream.on("error", reject);
-        fileStream.on("finish", resolve);
+        const req = net.request({
+          method: "POST",
+          url: url,
+        });
+
+        // Set headers
+        req.setHeader("Content-Type", "application/json");
+        req.setHeader("Accept", "application/pdf");
+        Object.entries(headers).forEach(([key, value]) => {
+          req.setHeader(key, value);
+        });
+
+        req.on('response', (res) => {
+          if (res.statusCode < 200 || res.statusCode >= 300) {
+            reject(new Error(`HTTP ${res.statusCode}`));
+            return;
+          }
+
+          const fileStream = fs.createWriteStream(tempPath);
+          res.pipe(fileStream);
+          res.on('error', reject);
+          fileStream.on('finish', resolve);
+          fileStream.on('error', reject);
+        });
+
+        req.on('error', reject);
+        req.write(data);
+        req.end();
       });
 
       return {
@@ -85,8 +94,21 @@ export function registerPdfHandlers() {
 
   ipcMain.handle("open-pdf-preview", async (_, pdfUrl) => {
     try {
-      const res = await fetch(pdfUrl);
-      const buffer = Buffer.from(await res.arrayBuffer());
+      // Check if it's already a file:// URL
+      if (pdfUrl.startsWith('file://')) {
+        // It's already a local file, just return it
+        return pdfUrl;
+      }
+
+      // It's an HTTP(S) URL, fetch it
+      const buffer = await new Promise((resolve, reject) => {
+        net.request(pdfUrl).on('response', (res) => {
+          const chunks = [];
+          res.on('data', (chunk) => chunks.push(chunk));
+          res.on('end', () => resolve(Buffer.concat(chunks)));
+          res.on('error', reject);
+        }).on('error', reject).end();
+      });
 
       const tempPath = path.join(app.getPath("temp"), `preview_${Date.now()}.pdf`);
       fs.writeFileSync(tempPath, buffer);

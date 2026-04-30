@@ -1,7 +1,7 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.0.25",
-  "description": "A boilerplate and utilities for running React Native applications in Electron",
+  "version": "0.0.32",
+  "description": "A boilerplate and utilities for running React Native applications in desktop environments using Electron.",
   "main": "index.mjs",
   "scripts": {
     "start": "electron index.mjs",
@@ -46,7 +46,8 @@
   "homepage": "https://github.com/dpraful/react-native-electron-platform#readme",
   "dependencies": {
     "electron": "^25.0.0",
-    "electron-updater": "^6.0.0"
+    "electron-updater": "^6.0.0",
+    "@babel/runtime": "^7.0.0"
   },
   "devDependencies": {
     "webpack": "^5.0.0",

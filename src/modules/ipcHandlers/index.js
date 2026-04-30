@@ -8,7 +8,7 @@ import { registerFileHandlers } from './fileOps.js';
 import { registerUtilsHandlers } from './utils.js';
 
 export function registerAllIpcHandlers() {
-  console.log("📝 Registering IPC handlers...");
+  console.log(" Registering IPC handlers...");
 
   // Deep Linking (basic)
   ipcMain.handle('react-native-open-url', async (_event, url) => {
@@ -29,5 +29,5 @@ export function registerAllIpcHandlers() {
     event.returnValue = true;
   });
 
-  console.log("✅ All IPC handlers registered");
+  console.log(" All IPC handlers registered");
 }

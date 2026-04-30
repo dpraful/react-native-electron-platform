@@ -222,4 +222,4 @@ contextBridge.exposeInMainWorld("electronAPI", {
 });
 
 // Log that preload has loaded
-console.log('✅ Electron API exposed to renderer process');
+console.log(' Electron API exposed to renderer process');

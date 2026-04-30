@@ -3,6 +3,21 @@ import path from "path";
 import fs from "fs";
 import { app, dialog } from "electron";
 
+const color = {
+  reset: "\x1b[0m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  red: "\x1b[31m",
+};
+
+const format = {
+  info: (text) => `${color.blue}${text}${color.reset}`,
+  success: (text) => `${color.green}${text}${color.reset}`,
+  warn: (text) => `${color.yellow}${text}${color.reset}`,
+  error: (text) => `${color.red}${text}${color.reset}`,
+};
+
 export function createMainWindow(__dirname) {
   const primaryDisplay = screen.getPrimaryDisplay();
   const { x, y, width, height } = primaryDisplay.bounds;
@@ -53,7 +68,7 @@ export function createMainWindow(__dirname) {
   }
 
   mainWindow.webContents.on("did-finish-load", () => {
-    console.log("Page loaded successfully");
+    console.log(format.success("Page loaded successfully"));
   });
 
   return mainWindow;
@@ -91,7 +106,7 @@ function loadAppContent(mainWindow, __dirname) {
 
   if (isDev) {
     mainWindow.loadURL("http://localhost:5001");
-    console.log("DEV MODE: http://localhost:5001");
+    console.log(format.info("DEV MODE: http://localhost:5001"));
   } else {
     const possiblePaths = [
       path.join(__dirname, "web-build/index.html"),
@@ -125,11 +140,11 @@ function loadAppContent(mainWindow, __dirname) {
 
 function setupDevToolsShortcuts(mainWindow) {
   mainWindow.webContents.on("before-input-event", (event, input) => {
-    if (input.control && input.shift && input.key.toLowerCase() === "i") {
-      mainWindow.webContents.toggleDevTools();
+    if (input.key === "F11") {
+      mainWindow.setFullScreen(!mainWindow.isFullScreen());
       event.preventDefault();
     } else if (input.key === "F12") {
-      mainWindow.webContents.toggleDevTools();
+      mainWindow.webContents.openDevTools({ mode: "detach" });
       event.preventDefault();
     } else if (
       input.key === "F5" ||

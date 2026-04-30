@@ -15,7 +15,7 @@ export function setupAutoUpdater(mainWindow) {
   // Check if app-update.yml exists (required for auto-updates)
   const appUpdatePath = path.join(process.resourcesPath, "app-update.yml");
   if (!fs.existsSync(appUpdatePath)) {
-    console.log("⚠️  Auto-update disabled: app-update.yml not found.");
+    console.log("  Auto-update disabled: app-update.yml not found.");
     console.log("   This file is only created when publishing updates.");
     return;
   }

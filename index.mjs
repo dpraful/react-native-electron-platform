@@ -12,6 +12,21 @@ import { createMainWindow } from './src/modules/windowManager.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const color = {
+  reset: "\x1b[0m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  red: "\x1b[31m",
+};
+
+const format = {
+  info: (text) => `${color.blue}${text}${color.reset}`,
+  success: (text) => `${color.green}${text}${color.reset}`,
+  warn: (text) => `${color.yellow}${text}${color.reset}`,
+  error: (text) => `${color.red}${text}${color.reset}`,
+};
+
 // ======================================================
 // SAFE MODE DETECTION (applies before ready)
 // ======================================================
@@ -60,9 +75,9 @@ app.whenReady().then(() => {
   setupAutoUpdater(mainWindow);
   
   // Log registered handlers
-  console.log("📊 IPC Handlers registered:", 
-    ipcMain.eventNames().filter(name => 
-      typeof name === 'string' && 
+  console.log(format.info("IPC Handlers registered:"),
+    ipcMain.eventNames().filter(name =>
+      typeof name === 'string' &&
       !name.startsWith('ELECTRON_')
     )
   );
@@ -79,6 +94,3 @@ app.on("activate", () => {
     mainWindow = createMainWindow(__dirname);
   }
 });
-
-// Export webpack helper utilities
-export * from './src/webpackConfigHelper.mjs';
