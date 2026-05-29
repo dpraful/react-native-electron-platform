@@ -5,33 +5,33 @@
     "smartUnpack": true
   },
   "compression": "maximum",
-  "electronLanguages": ["en-US"],
+  "electronLanguages": [
+    "en-US"
+  ],
   "removePackageScripts": true,
   "removePackageKeywords": true,
   "buildDependenciesFromSource": false,
   "npmRebuild": false,
   "nodeGypRebuild": false,
-
   "directories": {
     "output": "dist",
-    "buildResources": "node_modules/react-native-electron-platform/src"
+    "buildResources": "node_modules/react-native-electron-platform/lib"
   },
-
   "publish": [
     {
-      "provider": "generic",
-      "url": "https://yourdomain.com/updates/"
+      "provider": "github",
+      "owner": "YOUR_GITHUB_USERNAME",
+      "repo": "YOUR_REPOSITORY_NAME",
+      "private": false,
+      "releaseType": "release"
     }
   ],
-
   "files": [
     "electron/**/*",
-    "web-build/**/*",
+    "web/**/*",
     "package.json",
-
-    "node_modules/react-native-electron-platform/src/**/*",
+    "node_modules/react-native-electron-platform/lib/**/*",
     "node_modules/react-native-electron-platform/index.mjs",
-
     "!**/*.map",
     "!**/*.md",
     "!**/test/**",
@@ -39,11 +39,9 @@
     "!**/docs/**",
     "!**/locales/**",
     "!**/example/**",
-
     "!**/android/**",
     "!**/ios/**",
     "!**/build/**",
-    
     "!**/node_modules/electron/**",
     "!**/node_modules/react-native/**",
     "!node_modules/**/android/**",
@@ -51,29 +49,73 @@
     "!node_modules/**/build/**",
     "!node_modules/**/example/**"
   ],
-
   "asarUnpack": [
     "**/*.node"
   ],
-
   "extraMetadata": {
     "main": "node_modules/react-native-electron-platform/index.mjs"
   },
-
   "win": {
     "target": [
       {
         "target": "nsis",
-        "arch": ["x64"]
+        "arch": [
+          "x64"
+        ]
       },
       {
         "target": "msi",
-        "arch": ["x64"]
+        "arch": [
+          "x64"
+        ]
       }
     ],
     "icon": "electron/icon.ico"
   },
-
+  "mac": {
+    "target": [
+      {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      },
+      {
+        "target": "zip",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
+    ],
+    "icon": "electron/icon.icns",
+    "category": "public.app-category.developer-tools"
+  },
+  "linux": {
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "deb",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "rpm",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "icon": "electron/icons",
+    "category": "Development"
+  },
   "nsis": {
     "oneClick": false,
     "allowToChangeInstallationDirectory": true,
@@ -82,7 +124,6 @@
     "shortcutName": "app",
     "artifactName": "${productName} Setup ${version}.${ext}"
   },
-
   "msi": {
     "oneClick": false,
     "perMachine": true,

@@ -1,11 +1,11 @@
-import { getAllPackages, categorizePackages, isWebSupported, generateAlias, generateFallback } from '../src/webpackConfigHelper.mjs';
-import { WEB_UNSUPPORTED_PACKAGES } from './nonmodules.mjs';
+import { getDependencies, categorizePackages, isWebSupported, generateAlias, generateFallback } from '../lib/webpackConfigHelper.mjs';
+import { WEB_UNSUPPORTED_PACKAGES } from './electron/nonmodules.mjs';
 
 console.log('Testing webpackConfigHelper...');
 
-// Test getAllPackages
-const allPackages = getAllPackages();
-console.log('All packages:', Object.keys(allPackages));
+// Test getDependencies
+const dependencies = getDependencies();
+console.log('Dependencies:', Object.keys(dependencies));
 
 // Test categorizePackages
 const { webSupported, webUnsupported } = categorizePackages();

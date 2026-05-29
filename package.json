@@ -1,16 +1,39 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.0.32",
+  "version": "0.1.2",
   "description": "A boilerplate and utilities for running React Native applications in desktop environments using Electron.",
+  "type": "module",
   "main": "index.mjs",
+  "types": "index.d.ts",
   "scripts": {
     "start": "electron index.mjs",
-    "build": "webpack --config webpack.config.mjs"
+    "build": "npm run build:ts && webpack --config webpack.config.mjs",
+    "build:ts": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "platform": "node scripts/run.mjs",
+    "platform:build": "node scripts/run.mjs build",
+    "platform:typecheck": "node scripts/run.mjs typecheck",
+    "platform:preelectron": "node scripts/run.mjs preelectron",
+    "platform:web": "node scripts/run.mjs web",
+    "platform:web:build": "node scripts/run.mjs web:build",
+    "platform:electron": "node scripts/run.mjs electron",
+    "platform:electron:dev": "node scripts/run.mjs electron:dev",
+    "platform:electron:build": "node scripts/run.mjs electron:build",
+    "platform:electron:build:nsis": "node scripts/run.mjs electron:build:nsis",
+    "platform:electron:build:msi": "node scripts/run.mjs electron:build:msi",
+    "platform:electron:build:mac": "node scripts/run.mjs electron:build:mac",
+    "platform:electron:build:mac:dmg": "node scripts/run.mjs electron:build:mac:dmg",
+    "platform:electron:build:mac:zip": "node scripts/run.mjs electron:build:mac:zip",
+    "platform:electron:build:linux": "node scripts/run.mjs electron:build:linux",
+    "platform:electron:build:linux:appimage": "node scripts/run.mjs electron:build:linux:appimage",
+    "platform:electron:build:linux:deb": "node scripts/run.mjs electron:build:linux:deb",
+    "platform:electron:build:linux:rpm": "node scripts/run.mjs electron:build:linux:rpm"
   },
   "keywords": [
     "react-native",
     "react-native-desktop",
     "react-native-electron",
+    "react-native-electron-platform",
     "electron",
     "electron-react-native",
     "desktop",
@@ -45,8 +68,6 @@
   },
   "homepage": "https://github.com/dpraful/react-native-electron-platform#readme",
   "dependencies": {
-    "electron": "^25.0.0",
-    "electron-updater": "^6.0.0",
     "@babel/runtime": "^7.0.0"
   },
   "devDependencies": {
@@ -55,6 +76,7 @@
     "webpack-dev-server": "^4.0.0",
     "html-webpack-plugin": "^5.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.0",
+    "terser-webpack-plugin": "^5.0.0",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
@@ -65,7 +87,9 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "babel-loader": "^9.0.0",
     "react-refresh": "^0.14.0",
-    "file-loader": "^6.0.0"
+    "electron": "^25.0.0",
+    "electron-updater": "^6.0.0",
+    "compression-webpack-plugin": "^9.0.0"
   },
   "peerDependencies": {
     "react-native": ">=0.60.0"
@@ -73,14 +97,19 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "index.mjs",
+    "index.d.ts",
     "webpack.config.mjs",
     "scripts/",
-    "src/",
+    "lib/",
     "templates/",
     "README.md",
     "LICENSE",
+    "tsconfig.json",
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",

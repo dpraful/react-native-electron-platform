@@ -2,13 +2,13 @@
 *
 
 # Include only necessary files
-!src/
+!lib/
 !README.md
 !LICENSE
 !package.json
 
 # Exclude test files if not needed
-src/test/
+lib/test/
 test/
 
 # Exclude build configs if not needed

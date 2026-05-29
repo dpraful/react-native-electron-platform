@@ -1,11 +1,8 @@
 import { AppRegistry } from 'react-native';
+// @ts-ignore - this template is copied into the consuming app, where ../lib/App exists.
 import App from '../src/App';
 
-console.log('Registering App with AppRegistry...');
-
 AppRegistry.registerComponent('App', () => App);
-
-console.log('Running App...');
 
 const root = document.getElementById('root');
 if (root) {
