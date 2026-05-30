@@ -129,6 +129,13 @@ npm install react-native-electron-platform
     "electron:build": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build",
     "electron:build:nsis": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:nsis",
     "electron:build:msi": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:msi"
+    "electron:build:mac": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:mac",
+    "electron:build:mac:dmg": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:mac:dmg",
+    "electron:build:mac:zip": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:mac:zip",
+    "electron:build:linux": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:linux",
+    "electron:build:linux:appimage": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:linux:appimage",
+    "electron:build:linux:deb": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:linux:deb",
+    "electron:build:linux:rpm": "npm --prefix node_modules/react-native-electron-platform run platform:electron:build:linux:rpm"
   },
 }
 ```
