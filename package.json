@@ -1,6 +1,6 @@
 {
   "name": "react-native-electron-platform",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A boilerplate and utilities for running React Native applications in desktop environments using Electron.",
   "type": "module",
   "main": "index.mjs",

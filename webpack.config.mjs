@@ -53,7 +53,7 @@ class CopyFontsPlugin {
 }
 export default {
     mode: isProd ? 'production' : 'development',
-    devtool: isProd ? false : 'eval-cheap-module-source-map',
+    devtool: isProd ? false : 'cheap-module-source-map',
     cache: {
         type: 'filesystem',
         compression: 'gzip',
